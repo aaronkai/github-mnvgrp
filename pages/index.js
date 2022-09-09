@@ -7,12 +7,15 @@ import { getCookies, getCookie, setCookie, removeCookies } from 'cookies-next';
 
 export const getServerSideProps = ({ req, res }) => {
   setCookie('test', 'value', { req, res, maxAge: 60 * 6 * 24 });
+  getCookie('test');
+  getCookie('oneRM');
   return {
-    props: { message: `Next.js is awesome` },
+    props: {},
   };
 };
 
 export default function Home(props) {
+  console.log(props);
   const [oneRM, setOneRM] = useState({
     squat: 0,
     bench: 0,
@@ -35,7 +38,7 @@ export default function Home(props) {
         <meta name="description" content="workout helper for you" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Message from the Server: {props.message}!</p>
+      {/* <p>Message from the Server: {props.message}!</p> */}
       <Header title="Five Three One" />
       <Nav />
       <TMCalc oneRM={oneRM} setOneRM={setOneRM} TM={TM} setTM={setTM} />
